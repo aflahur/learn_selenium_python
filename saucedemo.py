@@ -1,19 +1,12 @@
-
 import unittest
-import time
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
-from webdriver_manager.chrome import ChromeDriverManager
+from POM.data import inputan
 import baseLogin
 
 class TestLogin(unittest.TestCase):
     def setUp(self):
-        # self.browser = webdriver.Chrome(ChromeDriverManager().install())
-        # webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
         self.driver = webdriver.Chrome()
-        # self.driver.get("https://saucedemo.com/")
-        self.url="https://www.saucedemo.com/"
+        self.url = inputan.url
     def test_a_success_login(self):
         # steps
         driver = self.driver #buka web browser
@@ -23,7 +16,7 @@ class TestLogin(unittest.TestCase):
     def test_a_fail_login(self):
         driver = self.driver
         driver.get(self.url)
-        baseLogin.test_fail_login(self,driver,"xxx","xxx")
+        baseLogin.test_fail_login(self,driver,inputan.invalid_username,inputan.invalid_password)
 
     def tearDown(self):
         self.driver.close()
